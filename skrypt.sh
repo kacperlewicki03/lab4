@@ -17,5 +17,10 @@ case "$1" in
         echo "--date, -d        - Wyświetla dzisiejszą datę"
         echo "--logs [num], -l [num]  - Tworzy pliki log"
         echo "--help, -h        - Wyświetla pomoc"
+        echo "--init            - Klonuje repozytorium i ustawia PATH"
+        ;;
+    --init)
+        git clone https://github.com/uzytkownik/nazwa-repo.git
+        export PATH=$PATH:$(pwd)/nazwa-repo
         ;;
 esac

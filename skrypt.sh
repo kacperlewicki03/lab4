@@ -18,9 +18,20 @@ case "$1" in
         echo "--logs [num], -l [num]  - Tworzy pliki log"
         echo "--help, -h        - Wyświetla pomoc"
         echo "--init            - Klonuje repozytorium i ustawia PATH"
+        echo "--error [num], -e [num] - Tworzy pliki błędów"
         ;;
     --init)
         git clone https://github.com/uzytkownik/nazwa-repo.git
         export PATH=$PATH:$(pwd)/nazwa-repo
+        ;;
+    --error|-e)
+        num=${2:-100}
+        mkdir -p errors
+        for i in $(seq 1 $num); do
+            filename="errors/error$i.txt"
+            echo "Nazwa pliku: $filename" > $filename
+            echo "Utworzony przez: skrypt.sh" >> $filename
+            echo "Data: $(date)" >> $filename
+        done
         ;;
 esac
